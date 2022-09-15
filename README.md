@@ -2,7 +2,7 @@ This is a simple cli tool that will return some weather data from a limited data
 
 `npm run historical_weather <function-name> [options]`
 
-You can also run it like this
+You can also run it with bash like this:
 
 `./historical_weather.sh <function-name> [options]`
 
