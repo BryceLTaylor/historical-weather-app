@@ -1,8 +1,11 @@
+const fs = require('fs');
+const csv = require('csv-parser');
+
 const arguments = process.argv.slice(2);
 let city = getCity(arguments[1]);
 let stationName = getStationName(city);
 
-console.log(`city: ${city}     stationName: ${stationName}`);
+// console.log(`city: ${city}     stationName: ${stationName}`);
 
 if (arguments[0] === 'days-of-precip') {
     precipitation();
@@ -13,7 +16,21 @@ if (arguments[0] === 'days-of-precip') {
 }
 
 function precipitation () {
-    console.log(`days of precipitation function for city ${city}`);
+    // console.log(`days of precipitation function for city ${city}`);
+    let daysCount = 0;
+    fs.createReadStream('./data/noaa_historical_weather_10yr.csv')
+        .pipe(csv())
+        .on('data', (row) => {
+            if (row.NAME === stationName) {
+                if ((row.PRCP != 0) || (row.SNOW != 0)) {
+                    daysCount++;
+                } 
+            }
+        })
+        .on('end', () => {
+            let returnData = {'city': city, 'days_of_percip': (daysCount / 10)}
+            console.log(JSON.stringify(returnData));
+        });
 }
 
 function tempChange () {
