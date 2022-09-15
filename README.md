@@ -2,6 +2,10 @@ This is a simple cli tool that will return some weather data from a limited data
 
 `npm run historical_weather <function-name> [options]`
 
+You can also run it like this
+
+`./historical_weather.sh <function-name> [options]`
+
 There are two functions available: `days-of-percip` and `max-temp-delta`
 
 days-of-percip will give you the average days of percipitation, rain or snow, for the city averaged over a 10 year period.
