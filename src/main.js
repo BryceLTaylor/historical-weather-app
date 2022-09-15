@@ -1,5 +1,8 @@
 const arguments = process.argv.slice(2);
 let city = getCity(arguments[1]);
+let stationName = getStationName(city);
+
+console.log(`city: ${city}     stationName: ${stationName}`);
 
 if (arguments[0] === 'days-of-precip') {
     precipitation();
@@ -32,5 +35,17 @@ function getCity (cityName) {
             throw 'please include a valid city, bos, jnu, or mia, as the second argument';
             break;
 
+    }
+}
+
+function getStationName(city) {
+    if (city === 'bos') {
+        return "BOSTON, MA US";
+    } else if (city === 'jnu'){
+        return "JUNEAU AIRPORT, AK US";
+    } else if (city === 'mia') {
+        return "MIAMI INTERNATIONAL AIRPORT, FL US"
+    } else {
+        throw `an error has occured getting the station name from city ${city}`
     }
 }
