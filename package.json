@@ -1,4 +1,7 @@
 {
+  "scripts":{
+    "historical_weather": "node ./src/main.js"
+  },
   "dependencies": {
     "csv-parser": "^3.0.0"
   }
